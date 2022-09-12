@@ -2,27 +2,20 @@
     import Steps from "./Steps.svelte";
     import Card from "./Card.svelte";
     import Success from "./Success.svelte";
-    import {steps as store} from "../stores/steps";
+    import {steps} from "../stores/steps";
+    import {complete} from "../services/firestore";
 
-    let steps = []
-
-    store.subscribe(stepsInStore => steps = stepsInStore)
-
-    $: activeStep = steps.find(step => !step.completed)
-
-    const completeStep = () => {
-        store.update(stepsInStore => stepsInStore.map(step => step.id === activeStep.id ? {
-            ...step,
-            completed: true
-        } : step))
-    }
-
+    $: activeStep = $steps.find(step => !step.completed)
+    $: success = $steps.length > 0 && !activeStep
+    const completeStep = async () => await complete(activeStep.id)
 </script>
 
-<Steps {steps}/>
+<Steps steps={$steps}/>
 
 {#if activeStep}
     <Card {activeStep} {completeStep}/>
-{:else}
+{/if}
+
+{#if success}
     <Success/>
 {/if}
