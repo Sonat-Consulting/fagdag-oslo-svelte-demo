@@ -1,15 +1,15 @@
-import {writable} from "svelte/store";
-import {WorkService} from "../services/work.service";
+import { writable } from "svelte/store";
+import { getContext } from "svelte";
 
 export const steps = writable([], () => {
-    const workService = new WorkService()
-    const unsubscribe = workService.subscribeWorkItems(onWorkItems);
-    return () => {
-        // no more subscribers on this store
-        unsubscribe()
-    }
-})
+  const workService = getContext<IServicesContext>("services").work;
+  const unsubscribe = workService.subscribeWorkItems(onWorkItems);
+  return () => {
+    // no more subscribers on this store
+    unsubscribe();
+  };
+});
 
-const onWorkItems = workItems => {
-    steps.set(workItems)
-}
+const onWorkItems = (workItems) => {
+  steps.set(workItems);
+};

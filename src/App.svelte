@@ -1,6 +1,9 @@
 <script lang="ts">
     import Work from "./components/Work.svelte";
     import Statistics from "./components/Statistics.svelte";
+    import {setContext} from "svelte";
+    import {WorkService} from "./services/work.service";
+    setContext<IServicesContext>("services", { work: new WorkService()})
 </script>
 
 <main class="container mx-auto p-5">
