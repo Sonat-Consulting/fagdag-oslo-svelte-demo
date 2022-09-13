@@ -1,13 +1,15 @@
 import {writable} from "svelte/store";
-import {subscribe} from "../services/firestore";
+import {WorkService} from "../services/work.service";
 
 export const steps = writable([], () => {
-    const unsubscribeFirestore = subscribe(onFirestoreData);
+    const workService = new WorkService()
+    const unsubscribe = workService.subscribeWorkItems(onWorkItems);
     return () => {
-        unsubscribeFirestore()
+        // no more subscribers on this store
+        unsubscribe()
     }
 })
 
-const onFirestoreData = stepsFromFirestore => {
-    steps.set(stepsFromFirestore)
+const onWorkItems = workItems => {
+    steps.set(workItems)
 }
