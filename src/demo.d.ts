@@ -5,7 +5,7 @@ type Work = {
   completed: boolean;
 };
 
-type WorkItemsSubscriber = function (WorkItem[]) : void
+type WorkItemsSubscriber = (steps: WorkItem[]) => void
 
 interface IWorkService {
     subscribeWorkItems(subscriber: WorkItemsSubscriber)
