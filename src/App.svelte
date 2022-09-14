@@ -1,5 +1,5 @@
 <script lang="ts">
-  const steps: Work[] = [
+  let steps: Work[] = [
     {
       id: "1",
       title: "Getting started",
@@ -35,7 +35,11 @@
   $: activeStep = steps.find(step => !step.completed)
 
   $: {
-    console.log(`active step is now ${activeStep.id}`)
+    console.log(`active step is now ${activeStep?.id}`)
+  }
+
+  const completeTask = () => {
+    steps = steps.map(step => step.id === activeStep.id ? { ...step, completed: true } : step)
   }
 </script>
 
@@ -56,7 +60,7 @@
       <h2 class="card-title">{activeStep.title}</h2>
       <p class="mb-3">{activeStep.description}</p>
       <div class="card-actions justify-end">
-        <button class="btn btn-primary">Done</button>
+        <button class="btn btn-primary" on:click={completeTask}>Done</button>
       </div>
     </div>
   </div>
