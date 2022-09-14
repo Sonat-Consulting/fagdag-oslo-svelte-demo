@@ -21,7 +21,9 @@
   }
 
   const completeTask = () => {
-    steps = steps.map(step => step.id === activeStep.id ? { ...step, completed: true } : step)
+    store.update(currentStepsInStore =>
+      currentStepsInStore.map(step => step.id === activeStep.id ? { ...step, completed: true } : step)
+    )
   }
 </script>
 
