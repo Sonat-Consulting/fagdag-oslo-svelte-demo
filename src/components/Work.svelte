@@ -3,9 +3,9 @@
   import Card from "./Card.svelte"
   import Success from "./Success.svelte"
   import { steps } from "../stores/work.store"
-  import { WorkService } from "../service/work.service"
+  import { getContext } from "svelte"
 
-  const workService: IWorkService = new WorkService()
+  const workService = getContext<IServicesContext>("services").workService
 
   $: activeStep = $steps.find(step => !step.completed)
 

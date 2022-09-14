@@ -11,3 +11,5 @@ interface IWorkService {
     subscribeWorkItems(subscriber: WorkItemsSubscriber)
     completeWorkItem: (id: string) => Promise<void>
 }
+
+type IServicesContext = { workService: IWorkService }
