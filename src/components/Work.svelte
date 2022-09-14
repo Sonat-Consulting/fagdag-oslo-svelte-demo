@@ -3,6 +3,9 @@
   import Card from "./Card.svelte"
   import Success from "./Success.svelte"
   import { steps } from "../stores/work.store"
+  import { WorkService } from "../service/work.service"
+
+  const workService: IWorkService = new WorkService()
 
   $: activeStep = $steps.find(step => !step.completed)
 
@@ -11,9 +14,7 @@
   }
 
   const completeTask = () => {
-    steps.update(currentStepsInStore =>
-      currentStepsInStore.map(step => step.id === activeStep.id ? { ...step, completed: true } : step)
-    )
+    workService.completeWorkItem(activeStep.id)
   }
 </script>
 
