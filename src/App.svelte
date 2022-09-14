@@ -5,6 +5,39 @@
     description: "Explain what Svelte is",
     completed: false
   }
+
+  const steps: Work[] = [
+    {
+      id: "1",
+      title: "Getting started",
+      completed: true,
+      description: "Set up project and install dependencies"
+    },
+    {
+      id: "2",
+      title: "Creating sub components",
+      completed: false,
+      description: "Create sub component to show how Svelte code modularization works"
+    },
+    {
+      id: "3",
+      title: "Passing props",
+      completed: false,
+      description: "Demonstrate how data is passed between components in Svelte"
+    },
+    {
+      id: "4",
+      title: "Triggering events",
+      completed: false,
+      description: "Demonstrate how sub components can notify parent components of data change"
+    },
+    {
+      id: "5",
+      title: "Finalize",
+      completed: false,
+      description: "Do this one last thing"
+    }
+  ]
 </script>
 
 <main class="container mx-auto p-5">
@@ -12,10 +45,9 @@
 
   <div class="flex justify-center mb-10">
     <ul class="steps steps-vertical lg:steps-horizontal">
-      <li class="step">Step 1</li>
-      <li class="step">Step 2</li>
-      <li class="step">Step 3</li>
-      <li class="step">Step 4</li>
+      {#each steps as step (step.id)}
+        <li class="step">{step.title}</li>
+      {/each}
     </ul>
   </div>
 
