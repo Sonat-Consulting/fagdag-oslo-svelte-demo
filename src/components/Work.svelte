@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { slide } from "svelte/transition"
   import Steps from "./Steps.svelte"
+  import Card from "./Card.svelte"
+  import Success from "./Success.svelte"
 
   let steps: Work[] = [
     {
@@ -49,17 +50,7 @@
 <Steps {steps} />
 
 {#if activeStep}
-  <div class="card w-96 bg-base-100 shadow-xl mx-auto">
-    <div class="card-body">
-      <h2 class="card-title">{activeStep.title}</h2>
-      <p class="mb-3">{activeStep.description}</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary" on:click={completeTask}>Done</button>
-      </div>
-    </div>
-  </div>
+  <Card {activeStep} {completeTask} />
 {:else}
-  <div class="flex justify-center" transition:slide={{duration: 1500}}>
-    <img src="https://c.tenor.com/Cyr2PR6E3kkAAAAC/sacha-baron.gif" alt="Great success" class="rounded">
-  </div>
+  <Success />
 {/if}
