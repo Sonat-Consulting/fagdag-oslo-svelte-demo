@@ -1,12 +1,14 @@
 <script lang="ts">
-  let work = {
+  let work: Work = {
+    id: "1",
     title: "Present svelte",
-    description: "Explain what Svelte is"
+    description: "Explain what Svelte is",
+    completed: false
   }
 </script>
 
 <main class="container mx-auto p-5">
-  <h1 class="text-center text-4xl">Hello world</h1>
+  <h1 class="text-center text-4xl mb-10">Hello world</h1>
 
   <div class="flex justify-center mb-10">
     <ul class="steps steps-vertical lg:steps-horizontal">
