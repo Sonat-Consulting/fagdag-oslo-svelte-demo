@@ -54,16 +54,21 @@
     </ul>
   </div>
 
-
-  <div class="card w-96 bg-base-100 shadow-xl mx-auto">
-    <div class="card-body">
-      <h2 class="card-title">{activeStep.title}</h2>
-      <p class="mb-3">{activeStep.description}</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary" on:click={completeTask}>Done</button>
+  {#if activeStep}
+    <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">{activeStep.title}</h2>
+        <p class="mb-3">{activeStep.description}</p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary" on:click={completeTask}>Done</button>
+        </div>
       </div>
     </div>
-  </div>
+  {:else}
+    <div class="flex justify-center">
+      <img src="https://c.tenor.com/Cyr2PR6E3kkAAAAC/sacha-baron.gif" alt="Great success" class="rounded">
+    </div>
+  {/if}
 </main>
 
 <style>
