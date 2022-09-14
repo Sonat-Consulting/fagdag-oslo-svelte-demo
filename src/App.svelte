@@ -1,11 +1,4 @@
 <script lang="ts">
-  let work: Work = {
-    id: "1",
-    title: "Present svelte",
-    description: "Explain what Svelte is",
-    completed: false
-  }
-
   const steps: Work[] = [
     {
       id: "1",
@@ -38,6 +31,12 @@
       description: "Do this one last thing"
     }
   ]
+
+  $: activeStep = steps.find(step => !step.completed)
+
+  $: {
+    console.log(`active step is now ${activeStep.id}`)
+  }
 </script>
 
 <main class="container mx-auto p-5">
@@ -54,8 +53,8 @@
 
   <div class="card w-96 bg-base-100 shadow-xl mx-auto">
     <div class="card-body">
-      <h2 class="card-title">{work.title}</h2>
-      <p class="mb-3">{work.description}</p>
+      <h2 class="card-title">{activeStep.title}</h2>
+      <p class="mb-3">{activeStep.description}</p>
       <div class="card-actions justify-end">
         <button class="btn btn-primary">Done</button>
       </div>
