@@ -1,11 +1,27 @@
 <script lang="ts">
-
+    let work = {
+        title: "Present svelte",
+        description: "Explain what Svelte is"
+    }
 </script>
 
 <main class="container mx-auto p-5">
     <h1 class="text-center text-4xl">Hello world</h1>
+
+    <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+        <div class="card-body">
+            <h2 class="card-title">{work.title}</h2>
+            <p class="mb-3">{work.description}</p>
+            <div class="card-actions justify-end">
+                <button class="btn btn-primary">Done</button>
+            </div>
+        </div>
+    </div>
 </main>
 
 <style>
-
+    :global body {
+        background: #AABBB1;
+        min-height: 100vh;
+    }
 </style>
