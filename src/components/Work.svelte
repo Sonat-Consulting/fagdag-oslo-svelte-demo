@@ -1,5 +1,6 @@
 <script lang="ts">
   import { slide } from "svelte/transition"
+  import Steps from "./Steps.svelte"
 
   let steps: Work[] = [
     {
@@ -45,13 +46,7 @@
   }
 </script>
 
-<div class="flex justify-center mb-10">
-  <ul class="steps steps-vertical lg:steps-horizontal">
-    {#each steps as step (step.id)}
-      <li class="step" class:step-primary={step.completed}>{step.title}</li>
-    {/each}
-  </ul>
-</div>
+<Steps {steps} />
 
 {#if activeStep}
   <div class="card w-96 bg-base-100 shadow-xl mx-auto">
