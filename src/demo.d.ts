@@ -4,3 +4,10 @@ type Work = {
   description: string;
   completed: boolean;
 };
+
+type WorkItemsSubscriber = function (WorkItem[]) : void
+
+interface IWorkService {
+    subscribeWorkItems(subscriber: WorkItemsSubscriber)
+    completeWorkItem: (id: string) => Promise<void>
+}
