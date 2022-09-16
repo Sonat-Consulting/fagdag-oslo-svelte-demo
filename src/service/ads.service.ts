@@ -19,8 +19,17 @@ export class AdsService implements IWorkAdsService {
     return Promise.resolve(undefined)
   }
 
-  getAdsByCounty(county: string): Promise<Ad[]> {
-    return Promise.resolve([])
+  async getAdsByCity(city: string): Promise<Ad[]> {
+    console.log(city)
+    const response = await fetch(`${this.apiUrl}?size=50&municipal=${city}`, {
+      headers: {
+        authorization: `Bearer ${this.token}`,
+      }
+    })
+
+    const adResponse: AdResponse = await response.json()
+
+    return adResponse.content
   }
 
 }

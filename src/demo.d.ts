@@ -66,7 +66,7 @@ interface IWorkService {
 
 interface IWorkAdsService {
   getAds(): Promise<Ad[]>
-  getAdsByCounty(county: string): Promise<Ad[]>
+  getAdsByCity(county: string): Promise<Ad[]>
   getAd(id: string): Promise<Ad>
 }
 

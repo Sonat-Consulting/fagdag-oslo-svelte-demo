@@ -2,10 +2,13 @@
   import { getContext } from "svelte"
   import Ad from "./Ad.svelte"
 
+  let searchCity: string = ""
+
   const adsService = getContext<IServicesContext>("services").workAdsService
-  let adsPromise = adsService.getAds()
+  $: adsPromise = adsService.getAdsByCity(searchCity)
 </script>
 
+<input bind:value={searchCity} type="text" placeholder="Søk på by" class="mb-10 input w-full max-w-xs" />
 <section>
   {#await adsPromise}
   {:then ads }

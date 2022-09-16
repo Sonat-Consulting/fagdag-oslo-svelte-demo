@@ -6,7 +6,7 @@
 <div class="card w-96 bg-base-100 shadow-xl mx-auto mb-10">
   <div class="card-body">
     <h2 class="card-title">{ad.title}</h2>
-    {#each ad.workLocations as location}
+    {#each ad.workLocations as location (location.city)}
       <div class="badge badge-accent">{location.city}</div>
     {/each}
     <p class="mb-3 hidden">{@html ad.description}</p>
